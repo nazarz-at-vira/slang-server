@@ -23,6 +23,7 @@
 
 #include "slang/analysis/AnalysisManager.h"
 #include "slang/analysis/AnalysisOptions.h"
+#include "slang/analysis/AnalysisQueries.h"
 #include "slang/ast/ASTContext.h"
 #include "slang/ast/Compilation.h"
 #include "slang/ast/Lookup.h"
@@ -218,6 +219,9 @@ private:
 
     /// Analysis manager for running driver analysis (multi-driven, unused, etc)
     std::unique_ptr<slang::analysis::AnalysisManager> m_driverAnalysis = nullptr;
+
+    /// Instance-aware driver queries that can elaborate the unfrozen compilation.
+    std::unique_ptr<slang::analysis::AnalysisQueries> m_analysisQueries;
 
     /// Cached diagnostics from the latest analysis run, if available
     std::optional<Diagnostics> m_cachedAnalysisDiags;
